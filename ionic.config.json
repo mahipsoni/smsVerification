@@ -1,0 +1,7 @@
+{
+  "name": "epaysa",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sign In</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="sign-in-card">
+    <ion-card-header>
+      <ion-card-subtitle>This app is currently available in India only.</ion-card-subtitle>
+      <ion-card-title>Sign in with Phone Number</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="signInForm">
+        <!-- <ion-item>
+          <ion-label position="stacked">
+            Select YourCountry
+            <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-select interface="popover" formControlName="countryValue">
+            <ion-select-option value="india">India</ion-select-option>
+          </ion-select>
+        </ion-item> -->
+        <ion-item>
+          <ion-label position="stacked">Enter Your Phone Number<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="text" maxlength="10" formControlName="phoneNumber" required>+91</ion-input>
+        </ion-item>
+        <ion-text *ngIf="signInForm.get('phoneNumber').hasError('required') && (signInForm.get('phoneNumber').dirty || signInForm.get('phoneNumber').touched)" color="danger">
+            Phone number is required.
+        </ion-text>
+        <ion-text *ngIf="signInForm.get('phoneNumber').hasError('pattern')" color="danger">
+            It is not a valid mobile number.
+        </ion-text>
+        <div class="ion-padding">
+          <ion-button expand="block" class="ion-no-margin" [disabled]="!signInForm.valid" (click)="phoneAuth()">Sign In</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <div class="ion-padding">
+    <ion-button expand="block" color="secondary" class="ion-text-capitalize">
+      Or register a new account
+      <ion-icon slot="end" name="arrow-forward"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>
